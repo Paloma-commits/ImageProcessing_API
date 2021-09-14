@@ -1,5 +1,6 @@
 //setting up the server
-import express from "express";
+import express, {Request, Response} from "express";
+
 
 //create the object name to the top-level Express function
 const app = express();
@@ -13,7 +14,7 @@ app.listen(port, () => {
 });
 
 //define a route handler for the default home page
-app.get('/home', (req, res) => {
+app.get('/home', (req: Request, res: Response) => {
     res.send('server working');
 })
 
@@ -22,8 +23,4 @@ import routes from './src/routes/indexRoutes';
 
 app.use('', routes);
 
-const myFunc = (num: number): number => {
-    return num * num;
-  };
-  
-export default myFunc;
+export default app;

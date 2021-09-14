@@ -20,7 +20,4 @@ app.get('/home', (req, res) => {
 //import routes the routes folder
 const indexRoutes_1 = __importDefault(require("./src/routes/indexRoutes"));
 app.use('', indexRoutes_1.default);
-const myFunc = (num) => {
-    return num * num;
-};
-exports.default = myFunc;
+exports.default = app;

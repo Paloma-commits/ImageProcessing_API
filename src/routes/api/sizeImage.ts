@@ -27,19 +27,19 @@ imageroute.get('/:id', async (req, res) => {
         if (image && fs.existsSync(imagePath)) {
             var exists = fs.existsSync(resized);
 
-            if(!exists) {
+            if (!exists) {
 
-                try{
+                try {
                     fs.readFile(imagePath, async function (err: any, data: any) {
                         await sharp(data)
                             .resize(height, width)
                             .toFile(resized);
-                            res.writeHead(200, { 'Content-Type': 'image/jpg' });
-                            fs.createReadStream(resized).pipe(res);
+                        res.writeHead(200, { 'Content-Type': 'image/jpg' });
+                        fs.createReadStream(resized).pipe(res);
                     });
 
                 }
-                catch(e){
+                catch (e) {
                     res.send(e);
                 }
             }

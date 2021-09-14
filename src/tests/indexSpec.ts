@@ -1,13 +1,12 @@
-// import app from '../../index'
-import myFunc from '../../index'
+import supertest from 'supertest';
+import app from '../../index';
 
-// //describe(suite goes here);
-
-// it("Should start the server on port 3,000", ()=> {
-
-// });
-
-it('should get number 45', () => {
-    expect(myFunc(9).toEqual(45));
-});
-
+// we tell supertest we are running the tests on the imported app
+const request = supertest(app);
+describe('Test /home endpoint response', () => {
+    it('gets the home endpoint', async (done) => {
+        const response = await request.get('/home');
+        expect(response.status).toBe(200);
+        done();
+    }
+)});
