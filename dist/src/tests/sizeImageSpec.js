@@ -50,10 +50,3 @@ describe('Test the resizing of the image', () => {
         done();
     }));
 });
-// describe('Test the saving system for the image', () => {
-//     it('checks for right height and width', () => {
-//     });
-//     it('test for file created when needed', ()=>{
-//         const 
-//     });
-// });

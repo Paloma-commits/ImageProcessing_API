@@ -13,6 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+const sharpFunction_1 = __importDefault(require("./sharpFunction"));
 //import {promises as fsPromises} from fs;
 const fs = require('fs');
 //route object called image
@@ -35,11 +36,10 @@ imageroute.get('/:id', (req, res) => __awaiter(void 0, void 0, void 0, function*
                 try {
                     fs.readFile(imagePath, function (err, data) {
                         return __awaiter(this, void 0, void 0, function* () {
-                            yield sharp(data)
-                                .resize(height, width)
-                                .toFile(resized);
+                            let resizedImage;
+                            resizedImage = sharpFunction_1.default(height, width, imagePath, resized);
                             res.writeHead(200, { 'Content-Type': 'image/jpg' });
-                            fs.createReadStream(resized).pipe(res);
+                            fs.createReadStream(resizedImage).pipe(res);
                         });
                     });
                 }
