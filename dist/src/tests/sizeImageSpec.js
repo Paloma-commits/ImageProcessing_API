@@ -15,10 +15,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const supertest_1 = __importDefault(require("supertest"));
 const __1 = __importDefault(require("../.."));
 const sizeImage_1 = __importDefault(require("../routes/api/sizeImage"));
-var request = supertest_1.default(__1.default);
+const request = supertest_1.default(__1.default);
 describe('Test the resizing of the image', () => {
     it('gets the resized image file', (done) => __awaiter(void 0, void 0, void 0, function* () {
-        const response = yield request
+        yield request
             .get('/images/resize/fjord?height=200&width=200')
             .expect(200)
             .expect('Content-Type', 'image/jpg');
@@ -26,7 +26,7 @@ describe('Test the resizing of the image', () => {
     }));
     it('test the image name on url is on file', () => {
         const image = 'fjord';
-        const response = sizeImage_1.default.get('/:id', () => __awaiter(void 0, void 0, void 0, function* () {
+        sizeImage_1.default.get('/:id', () => __awaiter(void 0, void 0, void 0, function* () {
             expect('/:id').toBe(image);
         }));
     });

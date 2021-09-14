@@ -1,14 +1,12 @@
-import fs from 'fs';
-import path from 'path';
 import supertest from 'supertest';
 import app from '../..';
 import imageroute from '../routes/api/sizeImage';
 
-var request = supertest(app);
+const request = supertest(app);
 
 describe('Test the resizing of the image', () => {
   it('gets the resized image file', async (done) => {
-    const response = await request
+    await request
       .get('/images/resize/fjord?height=200&width=200')
       .expect(200)
       .expect('Content-Type', 'image/jpg');
@@ -17,7 +15,7 @@ describe('Test the resizing of the image', () => {
 
   it('test the image name on url is on file', () => {
     const image = 'fjord';
-    const response = imageroute.get('/:id', async () => {
+    imageroute.get('/:id', async () => {
       expect('/:id').toBe(image);
     });
   });

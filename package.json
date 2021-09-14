@@ -8,7 +8,8 @@
     "jasmine": "jasmine",
     "test": "npm run build && npm run jasmine",
     "start": "nodemon index.ts",
-    "prettier": "prettier --config .prettierrc.json 'src/**/*.ts' --write"
+    "prettier": "prettier --config .prettierrc.json 'src/**/*.ts' --write",
+    "lint": "eslint . --ext .ts"
   },
   "author": "Paloma Laso",
   "license": "ISC",
@@ -16,6 +17,7 @@
     "@types/express": "^4.17.13",
     "@types/jasmine": "^3.9.0",
     "@types/node": "^16.7.9",
+    "@types/sharp": "^0.29.2",
     "@types/supertest": "^2.0.11",
     "@typescript-eslint/eslint-plugin": "^4.31.1",
     "eslint": "^7.32.0",
@@ -31,9 +33,11 @@
   },
   "dependencies": {
     "@types/multer": "^1.4.7",
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "jasmine-spec-reporter": "^7.0.0",
     "multer": "^1.4.3",
+    "postgres": "^1.0.2",
     "sharp": "^0.29.0"
   }
 }

@@ -1,39 +1,31 @@
 import express, { Request, Response } from 'express';
-import { WriteStream } from 'fs';
 import resize from './sharpFunction';
-
-//import {promises as fsPromises} from fs;
 const fs = require('fs');
 
 //route object called image
 const imageroute = express.Router();
-const sharp = require('sharp');
-const path = require('path');
 
 //It is going to be an async function with a promise to resize the imgage at the end of the process
 
 imageroute.get('/:id', async (req: Request, res: Response) => {
   //read url parameters
-  let image = req.params.id;
-  let height = Number(req.query.height);
-  let width = Number(req.query.width);
+  const image = req.params.id;
+  const height = Number(req.query.height);
+  const width = Number(req.query.width);
 
-  let imagePath = `src/images/${image}.jpg`;
-  let resized = `src/images/resized${image}_h${height}_w${width}.jpg`;
+  const imagePath = `src/images/${image}.jpg`;
+  const resized = `src/images/resized${image}_h${height}_w${width}.jpg`;
   //check the url parameters are int and the right filename
 
   if (height !== NaN && height > 0 && width !== NaN && width > 0) {
     if (image && fs.existsSync(imagePath)) {
-      var exists = fs.existsSync(resized);
+      const exists = fs.existsSync(resized);
 
       if (!exists) {
         try {
-          fs.readFile(imagePath, async function (err: string, data: string) {
-            let resizedImage: string;
-            resizedImage = resize(height, width, imagePath, resized);
-            res.writeHead(200, { 'Content-Type': 'image/jpg' });
-            fs.createReadStream(resizedImage).pipe(res);
-          });
+          resize(height, width, imagePath, resized);
+          res.writeHead(200, { 'Content-Type': 'image/jpg' });
+          fs.createReadStream(resized).pipe(res);
         } catch (e) {
           res.send(e);
         }

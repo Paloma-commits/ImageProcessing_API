@@ -1,15 +1,11 @@
-const sharp = require('sharp');
+import sharp from 'sharp';
 
 function resize(
   height: number,
   width: number,
-  image: string,
-  outputFilename: string
-) {
-  sharp(image)
-    .resize(height, width)
-    .toFile(`src/images/resized${image}_h${height}_w${width}.jpg`);
-  return outputFilename;
+  imagepath: string,
+  resizedpath: string
+): void {
+  sharp(imagepath).resize(height, width).toFile(resizedpath);
 }
-
 export default resize;
