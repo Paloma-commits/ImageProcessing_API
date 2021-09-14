@@ -18,7 +18,8 @@ const sizeImage_1 = __importDefault(require("../routes/api/sizeImage"));
 var request = supertest_1.default(__1.default);
 describe('Test the resizing of the image', () => {
     it('gets the resized image file', (done) => __awaiter(void 0, void 0, void 0, function* () {
-        const response = yield request.get('/images/resize/fjord?height=200&width=200')
+        const response = yield request
+            .get('/images/resize/fjord?height=200&width=200')
             .expect(200)
             .expect('Content-Type', 'image/jpg');
         done();
@@ -31,22 +32,22 @@ describe('Test the resizing of the image', () => {
     });
     it('test for wrong width (null)', (done) => __awaiter(void 0, void 0, void 0, function* () {
         const response = yield request.get('/images/resize/fjord?height=200&width=a');
-        expect(response.text).toEqual("Either the height or width are null or not greater than 0");
+        expect(response.text).toEqual('Either the height or width are null or not greater than 0');
         done();
     }));
     it('test for wrong height (null)', (done) => __awaiter(void 0, void 0, void 0, function* () {
         const response = yield request.get('/images/resize/fjord?height=a&width=200');
-        expect(response.text).toEqual("Either the height or width are null or not greater than 0");
+        expect(response.text).toEqual('Either the height or width are null or not greater than 0');
         done();
     }));
     it('test for wrong width (< 0)', (done) => __awaiter(void 0, void 0, void 0, function* () {
         const response = yield request.get('/images/resize/fjord?height=200&width=-8');
-        expect(response.text).toEqual("Either the height or width are null or not greater than 0");
+        expect(response.text).toEqual('Either the height or width are null or not greater than 0');
         done();
     }));
     it('test for wrong height (< 0)', (done) => __awaiter(void 0, void 0, void 0, function* () {
         const response = yield request.get('/images/resize/fjord?height=-8&width=200');
-        expect(response.text).toEqual("Either the height or width are null or not greater than 0");
+        expect(response.text).toEqual('Either the height or width are null or not greater than 0');
         done();
     }));
 });
